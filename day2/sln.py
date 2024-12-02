@@ -10,19 +10,23 @@ def diff(a, b):
     else:
         return 0
 
+def get_diffsum(line):
+    return abs(sum([diff(a, b) for a, b in zip(line, line[1:])]))
+
+def is_line_safe(line):
+    return get_diffsum(line) == len(line) - 1
+
 safe_1 = 0 
 safe_2 = 0 
 
 for line in lines:
-    diffsum = sum([diff(a, b) for a, b in zip(line, line[1:])])
-    if abs(diffsum) == len(line) - 1:
+    if is_line_safe(line):
         safe_1 += 1
         safe_2 += 1
     else:
         for i in range(0, len(line)):
             new_line = line[:i] + line[i+1:]
-            diffsum = sum([diff(a, b) for a, b in zip(new_line, new_line[1:])])
-            if abs(diffsum) == len(new_line) - 1:
+            if is_line_safe(new_line):
                 safe_2 += 1
                 break
 
