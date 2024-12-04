@@ -28,21 +28,14 @@ def at(grid, row, col):
     else:
         return grid[row][col]
 
-
 def check(grid, positions):
-    for i, ch in enumerate("MAS"):
-        grid_ch = at(grid, positions[i][0], positions[i][1])
-        if grid_ch != ch:
-            return False
-    return True
+    pattern = "".join([at(grid, positions[i][0], positions[i][1]) for i in range(len(positions))])
+    return pattern == "MAS"
 
 def count(grid, row, col):
-    res = 0
     if grid[row][col] == "X":
-        for d in dirs:
-            if check(grid, d(row, col)):
-                res += 1
-    return res
+        return sum([check(grid, d(row, col)) for d in dirs])
+    return 0
 
 total = 0
 for row in range(len(grid)):
@@ -59,16 +52,13 @@ def downleft(row, col):
 
 def check_2(grid, positions):
     pattern = "".join([at(grid, positions[i][0], positions[i][1]) for i in range(len(positions))])
-    if pattern == "MS" or pattern == "SM":
-        return True
-    return False
+    return pattern == "MS" or pattern == "SM"
 
 def count_2(grid, row, col):
-    res = 0
     if grid[row][col] == "A":
         if check_2(grid, upright(row, col)) and check_2(grid, downleft(row, col)):
-            res += 1
-    return res
+            return 1
+    return 0
 
 total = 0
 for row in range(len(grid)):
