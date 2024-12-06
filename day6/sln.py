@@ -47,18 +47,25 @@ def right_turn_of(player):
         new_heading = "up"
     return new_heading
 
-def scout_obstacle(player, g, visited):
+def scout_loop(player, g):
     pos, _ = player
     scout = (pos, right_turn_of(player))
     ch = ahead(scout, g)
-    found_obstacle = False
+    found_loop = False
+    scout_visited = set()
+    scout_visited.add(player)
     while ch != "n":
-        if scout[0] in visited and ahead(scout,g) == "#":
-            found_obstacle = True
+        if ch == "#":
+            scout = (scout[0], right_turn_of(scout))
+        else:
+            scout = (forward_of(scout), scout[1])
+        
+        if scout in scout_visited:
+            found_loop = True
             break
-        scout = (forward_of(scout), scout[1])
+        scout_visited.add(scout)
         ch = ahead(scout, g)
-    return found_obstacle
+    return found_loop
     
     
 visited = set()
@@ -66,19 +73,19 @@ obstructions = set()
 ch = ahead(player, g)
 visited.add(player[0])
 while ch != "n":
-    print(player)
+    # print(player)
+    if forward_of(player) not in visited and scout_loop(player, g):
+        obs_pos = forward_of(player)
+        if at(g, obs_pos[0], obs_pos[1]) != "n":
+            obstructions.add(obs_pos)
     if ch == "#":
         player = (player[0], right_turn_of(player))
     else:
         player = (forward_of(player), player[1])
-    if scout_obstacle(player, g, visited):
-        obstruction_pos = forward_of(player)
-        if obstruction_pos != start_pos:
-            obstructions.add(forward_of(player))
     visited.add(player[0])
     ch = ahead(player, g)
 
 print("Part 1", len(visited))
-print("Part 2", len(obstructions))
+print("Part 2", len(obstructions - set(start_pos)))
 
 
