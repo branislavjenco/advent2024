@@ -77,9 +77,9 @@ while ch != "n":
         player = (player[0], right_turn_of(player))
     else:
         if forward_of(player) not in visited and scout_loop(player, g):
-        obs_pos = forward_of(player)
-        if at(g, obs_pos[0], obs_pos[1]) != "n":
-            obstructions.add(obs_pos)
+            obs_pos = forward_of(player)
+            if at(g, obs_pos[0], obs_pos[1]) != "n":
+                obstructions.add(obs_pos)
         player = (forward_of(player), player[1])
     visited.add(player[0])
     ch = ahead(player, g)
