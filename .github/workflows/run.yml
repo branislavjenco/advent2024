@@ -14,7 +14,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Change to subdirectory and run script
+      - name: Run day 1
+        run: |
+          cd day1
+          python3 sln.py
+      - name: Run day 2
+        run: |
+          cd day2
+          python3 sln.py
+      - name: Run day 3
+        run: |
+          cd day3
+          python3 sln.py
+      - name: Run day 4
+        run: |
+          cd day4
+          python3 sln.py
+      - name: Run day 5
+        run: |
+          cd day5
+          python3 sln.py
+      - name: Run day 6
         run: |
           cd day6
+          python3 sln.py
+      - name: Run day 7
+        run: |
+          cd day7
           python3 sln.py
