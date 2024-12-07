@@ -48,6 +48,8 @@ def right_turn_of(player):
     return new_heading
 
 def scout_loop(player, g):
+    obstacle_pos = forward_of(player)
+    g[obstacle_pos[0]][obstacle_pos[1]] = "#"
     pos, _ = player
     scout = (pos, right_turn_of(player))
     ch = ahead(scout, g)
@@ -65,6 +67,8 @@ def scout_loop(player, g):
             break
         scout_visited.add(scout)
         ch = ahead(scout, g)
+
+    g[obstacle_pos[0]][obstacle_pos[1]] = "."
     return found_loop
     
     
