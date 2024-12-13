@@ -45,6 +45,5 @@ x = (prizey - y*by)/ay
 (prizex - y*bx)/ax = (prizey - y*by)/ay
 y = (prizex/ax - prizey/ay) / (bx/ax - by/ay)
 this produced numerically instable numbers, so this simplified version is better for that:
-this produced numerically instable numbers, so this simplified version is better for that:
 y = (prizex*ay - prizey*ax) / (ay*bx - ax*by)
 '''
