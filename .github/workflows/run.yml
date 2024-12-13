@@ -49,3 +49,23 @@ jobs:
         run: |
           cd day8
           python3 sln.py
+      - name: Run day 9
+        run: |
+          cd day9
+          python3 sln.py
+      - name: Run day 10
+        run: |
+          cd day10
+          python3 sln.py
+      - name: Run day 11
+        run: |
+          cd day11
+          python3 sln.py
+      - name: Run day 12
+        run: |
+          cd day12
+          python3 sln.py
+      - name: Run day 13
+        run: |
+          cd day13
+          python3 sln.py
