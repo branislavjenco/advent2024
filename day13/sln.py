@@ -30,12 +30,8 @@ def solve(data):
 print("Part 1", solve(data))
 print("Part 2", solve([[a, b, (prize[0]+10000000000000, prize[1]+10000000000000)] for a,b,prize in data]))
         
-
-
-
-
 '''
-minimize
+derivation
 x*ax + y*bx = prizex
 x*ay + y*by = prizey
 ----------------------
@@ -51,7 +47,7 @@ x = (prizey - y*by)/ay
 (prizex - y*bx)/ax = (prizey - y*by)/ay
 y = (prizex/ax - prizey/ay) / (bx/ax - by/ay)
 y = (prizex*ay - prizey*ax) / (ay*bx - ax*by)
-this can be the simplified for a more numerically stable solution, I used wolfram alpha for that part
-
+this produced numerically instable numbers, this simplified version is better for that
+y = (prizex*ay - prizey*ax]) / (ay*bx - ax*by)
 '''
 
